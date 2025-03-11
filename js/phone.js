@@ -36,6 +36,7 @@ const showPhone =(phones)=>{
        `;
        phoneContainer.appendChild(phoneDiv);
     });
+    loadingButton(false)
 }
 
 const handleSearchButton =()=>{
@@ -43,5 +44,16 @@ const handleSearchButton =()=>{
     const inputText = inputField.value;
     inputField.value ='';
     loadPhone(inputText)
+    loadingButton(true)
     
+}
+
+const loadingButton = (isLoading)=>{
+    const toggleloadingButton = document.getElementById('loading-button');
+    if(isLoading){
+        toggleloadingButton.classList.remove('hidden')
+    }
+    else{
+        toggleloadingButton.classList.add('hidden')
+    }
 }
