@@ -13,13 +13,23 @@
        <h2 class="text-center font-semibold text-3xl">Choose Your Phone</h2>
     </header>
     <main>
-        
+        <section class="px-3 md:px-10 py-3 md:py-10 text-center">
+           <div>
+            <input id="input-field"  type="text" placeholder="Search here" class="input" />
+            <button onclick="handleSearchButton()" class="btn btn-info">Search</button>
+           </div>
+        </section>
         <section class="px-3 md:px-10 py-3 md:py-10">
            
                 <div id="phone-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                    
                 </div>
-            
+            <div id="show-all-button"  class="text-center hidden">
+                <button class="btn btn-accent my-10">Accent</button>
+            </div>
+        </section>
+        <section>
+
         </section>
     </main>
     <footer>
