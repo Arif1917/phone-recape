@@ -30,7 +30,7 @@ const showPhone =(phones)=>{
                           <p>${phone.slug}</p>
                           <p>${phone.brand}</p>
                           <div class="card-actions justify-center">
-                            <button class="btn btn-primary">Show Details</button>
+                            <button onclick="handleShowDetails('${phone.slug}');my_modal_5.showModal()" class="btn btn-primary">Show Details</button>
                           </div>
                         </div>
        `;
@@ -38,7 +38,28 @@ const showPhone =(phones)=>{
     });
     loadingButton(false)
 }
-
+const handleShowDetails= async (id)=>{
+    console.log('click')
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+    const data = await res.json();
+    const phone = data.data;
+    showDetails(phone)
+}
+const showDetails = async (phone)=>{
+    console.log(phone)
+    const modalContainer = document.getElementById('modal-container');
+    const phoneModal = document.createElement('div');
+    phoneModal.innerHTML=`
+    <img src="${phone.image}" alt="">
+    <p>${phone.brand}</p>
+     <p>Storage:${phone.mainFeatures.storage}</p>
+  <p>DisplaySize:${phone.mainFeatures.displaySize}</p>
+  <p>ReleaisingDate:${phone.releaseDate
+    }</p>
+    
+    `;
+    modalContainer.appendChild(phoneModal)
+}
 const handleSearchButton =()=>{
     const inputField = document.getElementById('input-field');
     const inputText = inputField.value;
@@ -49,11 +70,12 @@ const handleSearchButton =()=>{
 }
 
 const loadingButton = (isLoading)=>{
-    const toggleloadingButton = document.getElementById('loading-button');
+    const loadingButton = document.getElementById('loading-button');
     if(isLoading){
-        toggleloadingButton.classList.remove('hidden')
+        loadingButton.classList.remove('hidden')
     }
     else{
-        toggleloadingButton.classList.add('hidden')
+        loadingButton.classList.add('hidden')
     }
 }
+
